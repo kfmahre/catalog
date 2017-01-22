@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+		<div class="row">
+			<h1 class="display-3">Edit Menu Item</h1>
+		</div>
+
+		<form action="{{url_for('editMenuItem', location_id=location_id, menu_id = menu_id)}}" method = 'POST'>
+			<div class="form-group">
+				<label for="itemname">Name</label>
+				<input type='text' size='30' name='name' placeholder="{{item.name}}" id="itemname">
+			</div>
+			<div class="form-group">
+				<label for="itemdesc">Description</label>
+				<textarea name='description' rows='5' cols='40' placeholder='{{item.description}}' id="itemdesc"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="itemprice">Price</label>
+				<div class="input-group">
+				<span class="input-group-addon">$</span><input type='text' size='8' name='price' placeholder="{{item.price}}" id="itemprice">
+				</div>
+			</div>
+			<div class="form-group">
+			<label for="itemclass">Class</label>
+				<div class="input-group" id="itemclass">
+				{% if item.shoe_class == 'Neutral' %}
+					<label class="form-check-label"><input class="form-check-input" type ='radio' name='class' value='Neutral' checked>Neutral</label>
+				{%else%}
+					<label class="form-check-label"><input class="form-check-input" type ='radio' name='class' value='Neutral'>Neutral</label>
+				{% endif %}
+
+				{% if item.shoe_class == 'Support' %}
+					<label class="form-check-label"><input class="form-check-input" type ='radio' name='class' value='Support' checked>Support</label>
+				{%else%}
+					<label class="form-check-label"><input class="form-check-input" type ='radio' name='class' value='Support'>Support</label>
+				{% endif %}
+				</div>
+
+			</div>
+			<input type='submit' value='Update' class="btn btn-warning">
+			<a href= "{{url_for('showMenu', location_id= item.location_id)}}" class="btn btn-primary">Cancel</a>
+		</form>
+{% endblock %}

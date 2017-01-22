@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+    <div class="row">
+      <h1 class="display-2">{{restaurant.name}}</h1>
+    </div>
+    <div class="row">
+      <a href = "{{ url_for('showRestaurants')}}" class="btn btn-primary">Other Restaurants</a>
+    </div>
+    <br>
+    <div class="flash row blockquote text-muted">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="container">
+      {% for message in messages %}
+        <div class="alert alert-info lead" role="alert"><strong>{{message}}</strong></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+    </div>
+    <div class="row">
+      <div class="card-columns">
+      {% for i in items %}
+      <div class="card">
+        <div class="card-block">
+          <div class="blockquote">
+            <span class="h2"><p>{{i.name}}</p></span>
+            <span class="lead"><p>{{i.price}}</p></span>
+          </div>
+          <p class="card-text">{{i.description}}</p>
+        </div>
+        <div class="card-footer">
+          <img src="{{creator.picture}}" class="img-fluid creator-img float-left">
+          <p class="card-text"><small class="text-muted">{{creator.username}}</small></p>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <a href='{{url_for('newMenuItem', restaurant_id = restaurant.id) }}' class="btn btn-success">Create menu item</a>
+    </div>
+
+{% endblock %}

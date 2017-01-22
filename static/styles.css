@@ -1,0 +1,8 @@
+.creator-img {
+  display: block;
+  margin: 5% auto 5% auto;
+  max-width: 25%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}

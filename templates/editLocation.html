@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+		<div class="flash row">
+				{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul>
+				{% for message in messages %}
+						<li><strong>{{message}}</strong></li>
+				{% endfor %}
+				</ul>
+				{% endif %}
+				{% endwith %}
+		</div>
+		<div class="container">
+			<h1 class="display-4">Edit {{location.name}}?</h1>
+			<div class="row">
+				<form action="{{url_for('editLocation', location_id=location_id)}}" method = 'POST'>
+					<label for="restname" class="mr-sm-2">Name <input type='text' size='30' name='name' placeholder="{{location.name}}" id="restname" class="form-control mb-2 mr-sm-2 mb-sm-0"></label>
+					<input type='submit' value='Update' class="btn btn-danger">
+					<a href= "{{url_for('showLocations')}}" class="btn btn-warning">Cancel</a>
+				</form>
+			</div>
+		</div>
+{% endblock %}
