@@ -34,9 +34,7 @@
 ._*
 .Spotlight-V100
 .Trashes
-.vagrant
 .git
-Vagrantfile
 ehthumbs.db
 Thumbs.db
 node_modules/
